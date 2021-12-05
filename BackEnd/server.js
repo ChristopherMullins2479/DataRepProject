@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose');
-
-const strConnection = 'mongodb+srv://admin:iamtheadmin@cluster0.bvlvr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+                    
+const strConnection = 'mongodb+srv://admin:iamtheadmin@cluster0.bvlvr.mongodb.net/Ireland?retryWrites=true&w=majority'
 
 
 main().catch(err => console.log(err));
@@ -30,45 +30,45 @@ async function main() {
   await mongoose.connect(strConnection);
 }
 
-const movieSchema = new mongoose.Schema({
-    Title:String,
-    Year:String,
-    Poster:String
+const countySchema = new mongoose.Schema({
+    Name:String,
+    Population:String,
+    Flag:String
 });
 
-const movieModel = mongoose.model('martin', movieSchema);
+const countyModel = mongoose.model('county', countySchema);
 
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/api/movies', (req,res)=>{
+app.post('/api/counties', (req,res)=>{
     console.log(req.body);
-    console.log(req.body.Title);
-    console.log(req.body.Year);
-    console.log(req.body.Poster);
+    console.log(req.body.Name);
+    console.log(req.body.Population);
+    console.log(req.body.Flag);
 
-    movieModel.create({
-        Title:req.body.Title,
-        Year:req.body.Year,
-        Poster:req.body.Poster
+    countyModel.create({
+        Name:req.body.Name,
+        Population:req.body.Population,
+        Flag:req.body.Flag
     });
     res.send('Data Sent to Server!')
 })
 
-app.get('/api/movies/:id',(req, res)=>{
+app.get('/api/counties/:id',(req, res)=>{
     console.log(req.params.id);
 
-    movieModel.findById(req.params.id,(error,data)=>{
+    countyModel.findById(req.params.id,(error,data)=>{
         res.json(data);
     })
 })
 
-app.delete('/api/movies/:id',(req,res)=>{
+app.delete('/api/counties/:id',(req,res)=>{
     console.log("DELETE: "+req.params.id);
 
-    movieModel.deleteOne({_id:req.params.id},
+    countyModel.deleteOne({_id:req.params.id},
         (error,data)=>{
             if(error)
                 res.send(error);
@@ -77,20 +77,20 @@ app.delete('/api/movies/:id',(req,res)=>{
         })
 })
 
-app.put('/api/movies/:id',(req, res)=>{
+app.put('/api/counties/:id',(req, res)=>{
     console.log('update');
     console.log(req.body);
     console.log("Updating: " + req.params.id);
 
-    movieModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
+    countyModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
         (err,data)=>{
             res.send(data);
         })
 
 })
 
-app.get('/api/movies', (req, res) => {
-    movieModel.find((err, data)=>{
+app.get('/api/counties', (req, res) => {
+    countyModel.find((err, data)=>{
         res.json(data);
     })
           

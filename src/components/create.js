@@ -5,28 +5,28 @@ class Create extends Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeMovieName = this.onChangeMovieName.bind(this);
-        this.onChangeMovieYear = this.onChangeMovieYear.bind(this);
-        this.onChangeMoviePoster = this.onChangeMoviePoster.bind(this);
+        this.onChangeCountyName = this.onChangeCountyName.bind(this);
+        this.onChangeCountyPopulation = this.onChangeCountyPopulation.bind(this);
+        this.onChangeCountyFlag = this.onChangeCountyFlag.bind(this);
         this.state = {
-            Title: '',
-            Year: '',
-            Poster: ''
+            Name: '',
+            Population: '',
+            Flag: ''
         }
     }
 
     handleSubmit(event) {
-        console.log("Name: " +this.state.Title+
-        " Year: " + this.state.Year +
-        "Poster: " + this.state.Poster);
+        console.log("Name: " +this.state.Name+
+        " Population: " + this.state.Population +
+        "Flag: " + this.state.Flag);
 
-        const NewMovie = {
-            Title: this.state.Title,
-            Year: this.state.Year,
-            Poster: this.state.Poster
+        const NewCounty = {
+            Name: this.state.Name,
+            Population: this.state.Population,
+            Flag: this.state.Flag
         }
 
-        axios.post('http://localhost:4000/api/movies', NewMovie)
+        axios.post('http://localhost:4000/api/counties', NewCounty)
         .then((response)=>{
             console.log(response)
         })
@@ -36,24 +36,24 @@ class Create extends Component {
 
         event.preventDefault();
         this.setState({
-            Title:'',
-            Year:'',
-            Poster:''
+            Name:'',
+            Population:'',
+            Flag:''
         });
     }
-    onChangeMovieName(event) {
+    onChangeCountyName(event) {
         this.setState({
-            Title: event.target.value
+            Name: event.target.value
         })
     }
-    onChangeMovieYear(event) {
+    onChangeCountyPopulation(event) {
         this.setState({
-            Year: event.target.value
+            Population: event.target.value
         })
     }
-    onChangeMoviePoster(event){
+    onChangeCountyFlag(event){
         this.setState({
-            Poster: event.target.value
+            Flag: event.target.value
         })
     }
 
@@ -64,31 +64,31 @@ class Create extends Component {
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-group">
-                        <label>Add Movie Name: </label>
+                        <label>Add County Name: </label>
                         <input type="text"
                             className="form-control"
-                            value={this.state.Title}
-                            onChange={this.onChangeMovieName}
+                            value={this.state.Name}
+                            onChange={this.onChangeCountyName}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add Movie Year: </label>
+                        <label>Add County Population: </label>
                         <input type="text"
                             className="form-control"
-                            value={this.state.Year}
-                            onChange={this.onChangeMovieYear}
+                            value={this.state.Population}
+                            onChange={this.onChangeCountyPopulation}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add Movie Poster: </label>
+                        <label>Add County Flag: </label>
                         <textarea type="text"
                             className="form-control"
-                            value={this.state.Poster}
-                            onChange={this.onChangeMoviePoster}
+                            value={this.state.Flag}
+                            onChange={this.onChangeCountyFlag}
                         />
                     </div>
                     <div>
-                        <input type="submit" value="Add Movie"
+                        <input type="submit" value="Add County"
                             className="btn btn-primary"></input>
                     </div>
                 </form>

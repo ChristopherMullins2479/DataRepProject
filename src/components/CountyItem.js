@@ -5,15 +5,15 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 
 // some comments
-class MovieItem extends Component {
+class CountyItem extends Component {
 
 constructor(){
     super();
-    this.deleteMovie = this.deleteMovie.bind(this);
+    this.deleteCounty = this.deleteCounty.bind(this);
 }
 //delete moveie method
-deleteMovie(){
-    axios.delete('http://localhost:4000/api/movies/'+this.props.movie._id)
+deleteCounty(){
+    axios.delete('http://localhost:4000/api/counties/'+this.props.county._id)
     .then(()=>{
         this.props.refreshData();
     })
@@ -24,21 +24,21 @@ deleteMovie(){
             <div>
                 {/* some comments  */}
                 <Card>
-                    <Card.Header>{this.props.movie.Title}</Card.Header>
+                    <Card.Header>{this.props.county.Name}</Card.Header>
                     <Card.Body>
                         <blockquote>
-                            <img src={this.props.movie.Poster}></img>
+                            <img src={this.props.county.Flag}></img>
                             <footer>
-                                {this.props.movie.Year}
+                                {this.props.county.Population}
                             </footer>
                         </blockquote>
                     </Card.Body>
-<Link to={"/edit/" +this.props.movie._id} className="btn btn-primary">Edit</Link>
+<Link to={"/edit/" +this.props.county._id} className="btn btn-primary">Edit</Link>
 
-<Button variant ="danger" onClick={this.deleteMovie}>Delete</Button>
+<Button variant ="danger" onClick={this.deleteCounty}>Delete</Button>
                 </Card>
             </div>
         );
     }
 }
-export default MovieItem;
+export default CountyItem;
