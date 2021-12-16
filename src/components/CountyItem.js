@@ -10,6 +10,8 @@ class CountyItem extends Component {
 constructor(){
     super();
     this.deleteCounty = this.deleteCounty.bind(this);
+    // console.log('item')
+    // console.log(this.props.county);
 }
 //delete moveie method
 deleteCounty(){
@@ -29,6 +31,7 @@ deleteCounty(){
                         <blockquote>
                             <img src={this.props.county.Flag}></img>
                             <footer>
+                                Population : 
                                 {this.props.county.Population}
                             </footer>
                         </blockquote>

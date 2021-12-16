@@ -24,7 +24,8 @@ class Read extends Component
     componentDidMount(){
         axios.get('http://localhost:4000/api/counties')
         .then((response)=>{
-            this.setState({mycounties: response.data})
+            console.log(response.data)
+            this.setState({myCounties: response.data})
         })
         .catch((error)=>{
             console.log(error);
@@ -32,13 +33,14 @@ class Read extends Component
     }
 
     state = {
-        mycounties: []            
+        myCounties: []            
     };
 
     render(){
         return(
             <div>
-                <h1>This is my Read component!</h1>
+                <h1>Irish Counties</h1>
+                <Counties Counties_={this.state.myCounties} refreshData = {this.refreshData}></Counties>
             </div>
         );
     }

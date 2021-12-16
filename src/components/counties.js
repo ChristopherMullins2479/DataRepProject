@@ -4,8 +4,8 @@ import CountyItem from './CountyItem';
 class Counties extends Component
 {
     render(){
-        return this.props.myCounties.map((film)=>{
-            //return <CountyItem movie={film} key={film.imdbID} refreshData = {this.props.refreshData}></CountyItem>
+        return this.props.Counties_.map((County_)=>{
+            return <CountyItem county={County_} key={County_._id} refreshData = {this.props.refreshData}></CountyItem>
         })
     }
 }

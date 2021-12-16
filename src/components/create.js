@@ -60,7 +60,7 @@ class Create extends Component {
     render() {
         return (
             <div>
-                <h1>This is my Create Component!</h1>
+                <h1>Add County to Database</h1>
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-group">
